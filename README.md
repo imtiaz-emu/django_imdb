@@ -1,0 +1,1 @@
+Try Django 1.9 is an introduction to Django version 1.9 by creating a simple, yet robust, Django blog. This series covers a variety of Django basics as well as Django 1.9 specific material.

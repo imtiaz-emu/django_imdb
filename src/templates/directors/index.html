@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>Directors List</h1>
+    {% for director in directors %}
+        <p><a href="{{ director.get_absolute_url }}">{{ director.id }}</a></p>
+        <p>{{ director.name }}</p>
+        <p>{{ director.bio }}</p>
+        <p>{{ director.created_at }}</p>
+        <p>{{ director.updated_at }}</p>
+    {% endfor %}
+
+{% endblock content %}
