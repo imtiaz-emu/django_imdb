@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>Actors List</h1>
+    {% for actor in actors %}
+        <p><a href="{{ actor.get_absolute_url }}">{{ actor.id }}</a></p>
+        <p>{{ actor.name }}</p>
+        <p>{{ actor.bio }}</p>
+        <p>{{ actor.created_at }}</p>
+        <p>{{ actor.updated_at }}</p>
+    {% endfor %}
+
+{% endblock content %}
