@@ -2,7 +2,9 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-
+    {% if director.photo %}
+        <img src="{{ director.photo.url }}">
+    {% endif %}
     <p>{{ director.id }}</p>
     <p>{{ director.name }}</p>
     <p>{{ director.bio }}</p>
