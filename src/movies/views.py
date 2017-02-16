@@ -5,9 +5,14 @@ from .models import Movie
 
 def movies_index(request):
     movies = Movie.objects.all()
+    # for movie in movies:
+    #     movie.directors = movie.directors.all()
+    #     movie.actors = movie.actors.all()
+
     context_data = {
         'movies': movies
     }
+
     return render(request, 'movies/index.html', context_data)
 
 def movie_show(request, id=None):

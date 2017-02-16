@@ -1,13 +1,30 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <h1>Movies List</h1>
-    {% for movie in movies %}
-        <p><a href="{{ movie.get_absolute_url }}">{{ movie.id }}</a></p>
-        <p>{{ movie.name }}</p>
-        <p>{{ movie.plot }}</p>
-        <p>{{ movie.created_at }}</p>
-        <p>{{ movie.updated_at }}</p>
-    {% endfor %}
+
+    <div class="row">
+        {% for movie in movies %}
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="info-box brown-bg">
+                    {% if movie.photo %}
+                        <img src="{{ movie.photo.url }}" class="img-responsive">
+                    {% endif %}
+                    <div>{{ movie.plot }}</div>
+                    <div class="title">
+                        <strong>Director: </strong>
+                        {% for director in movie.directors.all() %}
+                            {{ director.name }}<br>
+                        {% endfor %}
+                    </div>
+                    <div class="title">
+                        <strong>Cast: </strong>
+                        {% for actor in movie.actors %}
+                            {{ actor.name }}<br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock content %}
