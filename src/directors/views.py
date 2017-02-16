@@ -18,11 +18,3 @@ def director_show(request, id=None):
     }
     return render(request, 'directors/show.html', context_data)
 
-def director_create(request):
-    return HttpResponse("<h1>Director Create</h1>")
-
-def director_update(request):
-    return HttpResponse("<h1>Director Update</h1>")
-
-def director_delete(request):
-    return HttpResponse("<h1>Director Delete</h1>")
