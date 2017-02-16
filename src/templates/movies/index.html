@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>Movies List</h1>
+    {% for movie in movies %}
+        <p><a href="{{ movie.get_absolute_url }}">{{ movie.id }}</a></p>
+        <p>{{ movie.name }}</p>
+        <p>{{ movie.plot }}</p>
+        <p>{{ movie.created_at }}</p>
+        <p>{{ movie.updated_at }}</p>
+    {% endfor %}
+
+{% endblock content %}

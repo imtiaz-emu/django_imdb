@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'directors',
-    'actors'
+    'actors',
+    'movies'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -125,6 +126,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '../static')
     #'/var/www/static/',
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media_cdn')
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = '/media/'
 
 
 

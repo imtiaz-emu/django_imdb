@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+
+    <p>{{ movie.id }}</p>
+    <p>{{ movie.name }}</p>
+    <p>{{ movie.plot }}</p>
+    <p>{{ movie.created_at }}</p>
+    <p>{{ movie.updated_at }}</p>
+{% endblock content %}
