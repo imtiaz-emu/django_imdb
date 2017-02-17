@@ -2,25 +2,34 @@
 
 {% block content %}
 
-    <div class="row">
+    <div class="row all-movies">
         {% for movie in movies %}
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="info-box brown-bg">
-                    {% if movie.photo %}
-                        <img src="{{ movie.photo.url }}" class="img-responsive">
-                    {% endif %}
-                    <div>{{ movie.plot }}</div>
-                    <div class="title">
-                        <strong>Director: </strong>
-                        {% for director in movie.directors.all() %}
-                            {{ director.name }}<br>
-                        {% endfor %}
-                    </div>
-                    <div class="title">
-                        <strong>Cast: </strong>
-                        {% for actor in movie.actors %}
-                            {{ actor.name }}<br>
-                        {% endfor %}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            {% if movie.photo %}
+                                <img src="{{ movie.photo.url }}" class="img-responsive">
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="count">
+                                <a href="{{ movie.get_absolute_url }}">{{ movie.name }}</a>
+                            </div>
+                            <div>{{ movie.plot | truncatechars:100 }}</div>
+                            <div class="title">
+                                <strong>Director: </strong>
+                                {% for director in movie.directors.all %}
+                                    <a href="{{ director.get_absolute_url }}">{{ director.name }}</a><br>
+                                {% endfor %}
+                            </div>
+                            <div class="title">
+                                <strong>Cast: </strong>
+                                {% for actor in movie.actors.all %}
+                                    <a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a><br>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
