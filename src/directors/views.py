@@ -11,7 +11,7 @@ def director_index(request):
     return render(request, 'directors/index.html', context_data)
 
 def director_show(request, id=None):
-    director = get_object_or_404(Director, id=id)
+    director = get_object_or_404(Director.objects.prefetch_related('movie_set'), id=id)
     context_data = {
         'director': director,
         'title': director.name

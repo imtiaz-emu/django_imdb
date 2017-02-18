@@ -11,7 +11,7 @@ def actors_index(request):
     return render(request, 'actors/index.html', context_data)
 
 def actors_show(request, id=None):
-    actor = get_object_or_404(Actor, id=id)
+    actor = get_object_or_404(Actor.objects.prefetch_related('movie_set'), id=id)
     context_data = {
         'actor': actor,
         'title': actor.name

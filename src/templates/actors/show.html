@@ -1,11 +1,26 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
+    <div class="row single-actor">
 
-    <p>{{ actor.id }}</p>
-    <p>{{ actor.name }}</p>
-    <p>{{ actor.bio }}</p>
-    <p>{{ actor.created_at }}</p>
-    <p>{{ actor.updated_at }}</p>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="count">
+                {{ actor.name }}
+            </div>
+            <div>{{ actor.bio }}</div>
+            <div class="title">
+                <strong>Movies: </strong>
+                {% for movie in actor.movie_set.all %}
+                    <a href="{{ movie.get_absolute_url }}">{{ movie.name }}</a><br>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            {% if actor.photo %}
+                <img src="{{ actor.photo.url }}" class="img-responsive">
+            {% endif %}
+        </div>
+
+    </div>
 {% endblock content %}

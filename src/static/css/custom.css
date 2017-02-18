@@ -2,8 +2,42 @@
     color: #000;
 }
 
-.all-actors, .all-directors, .all-movies, .info-box .count {
+.all-actors .info-box .count {
     font-size: 17px;
     margin-top: 0px;
     color: black;
+}
+.all-directors .info-box .count {
+    font-size: 17px;
+    margin-top: 0px;
+    color: black;
+}
+.all-movies, .info-box .count {
+    font-size: 17px;
+    margin-top: 0px;
+    color: black;
+}
+.single-director .count{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.single-director .title{
+    margin-top: 15px;
+}
+.single-actor .count{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.single-actor .title{
+    margin-top: 15px;
+}
+.single-movie .count{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.single-movie .title{
+    margin-top: 15px;
 }
