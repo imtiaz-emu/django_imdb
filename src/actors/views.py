@@ -6,14 +6,14 @@ from .models import Actor
 def actors_index(request):
     actors = Actor.objects.all()
     context_data = {
-        'directors': actors
+        'actors': actors
     }
     return render(request, 'actors/index.html', context_data)
 
 def actors_show(request, id=None):
     actor = get_object_or_404(Actor, id=id)
     context_data = {
-        'director': actor,
+        'actor': actor,
         'title': actor.name
     }
     return render(request, 'actors/show.html', context_data)

@@ -1,8 +1,9 @@
-.all-movies .info-box .count{
+.all-movies .info-box .title strong{
+    color: #000;
+}
+
+.all-actors, .all-directors, .all-movies, .info-box .count {
     font-size: 17px;
     margin-top: 0px;
     color: black;
-}
-.all-movies .info-box .title strong{
-    color: #000;
 }
