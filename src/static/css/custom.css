@@ -1,4 +1,4 @@
-.all-movies .info-box .title strong{
+.all-movies .info-box .title strong {
     color: #000;
 }
 
@@ -7,37 +7,57 @@
     margin-top: 0px;
     color: black;
 }
+
 .all-directors .info-box .count {
     font-size: 17px;
     margin-top: 0px;
     color: black;
 }
+
 .all-movies, .info-box .count {
     font-size: 17px;
     margin-top: 0px;
     color: black;
 }
-.single-director .count{
+
+.single-director .count {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 15px;
 }
-.single-director .title{
+
+.single-director .title {
     margin-top: 15px;
 }
-.single-actor .count{
+
+.single-actor .count {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 15px;
 }
-.single-actor .title{
+
+.single-actor .title {
     margin-top: 15px;
 }
-.single-movie .count{
+
+.single-movie .count {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 15px;
 }
-.single-movie .title{
+
+.single-movie .title {
     margin-top: 15px;
+}
+
+.login-form #id_username {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 0;
 }
