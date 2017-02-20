@@ -1,19 +1,18 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
-from django.contrib.auth.forms import UserCreationForm
+from .forms import UserRegistrationForm
 from django.core.context_processors import csrf
-from django import template
-registration = template.Library()
+
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/accounts/register/complete')
 
     else:
-        form = UserCreationForm()
+        form = UserRegistrationForm()
 
     token = {}
     token.update(csrf(request))
@@ -24,7 +23,3 @@ def register(request):
 
 def registration_complete(request):
     return render_to_response('authentication/registration_complete.html')
-
-@registration.filter(name='addcss')
-def addcss(field, css):
-   return field.as_widget(attrs={"class":css})
