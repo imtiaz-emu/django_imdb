@@ -44,8 +44,10 @@ class UserRegistrationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        user = super(UserCreationForm, self).save(commit=False)
+        user = super(UserRegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
+        last_inserted_user = User.objects.order_by('-id')[0]
+        user.username = self.cleaned_data["email"].split('@')[0] + str(last_inserted_user.id + 1)
         if commit:
             user.save()
         return user
