@@ -30,7 +30,13 @@
                             <span class="profile-ava">
                                 <img alt="" src="{% static "img/avatar1_small.jpg" %}">
                             </span>
-                    <span class="username">Jenifer Smith</span>
+                    <span class="username">
+                        {% if user.is_authenticated %}
+                            {{ user.username }}
+                        {% else %}
+                            Guest
+                        {% endif %}
+                    </span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">

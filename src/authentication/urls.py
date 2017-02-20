@@ -20,4 +20,7 @@ urlpatterns = [
     url(r'^register/$', 'authentication.views.register', name='register'),
     url(r'^register/complete/$', 'authentication.views.registration_complete',
         name='registration_complete'),
+    url(r'^login/$', 'authentication.views.login_user', name='login'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+    url(r'^accounts/loggedin/$', 'authentication.views.loggedin', name='loggedin'),
 ]
