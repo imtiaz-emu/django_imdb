@@ -35,7 +35,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/movies')
+                return HttpResponseRedirect('/')
 
 
     return render(request, 'authentication/login.html')

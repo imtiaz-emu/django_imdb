@@ -20,6 +20,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^$', 'dashboard.views.index'),
     url(r'^admin/', admin.site.urls),
     url(r'^directors/', include("directors.urls", namespace='directors')),
     url(r'^actors/', include("actors.urls", namespace='actors')),

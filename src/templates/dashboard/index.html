@@ -1,0 +1,119 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+    <div class="row all-movies">
+        {% for movie in movies %}
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="info-box brown-bg">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            {% if movie.photo %}
+                                <img src="{{ movie.photo.url }}" class="img-responsive">
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="count">
+                                <a href="{{ movie.get_absolute_url }}">{{ movie.name }}</a>
+                            </div>
+                            <div>{{ movie.plot | truncatechars:100 }}</div>
+                            <br>
+                            <div class="title">
+                                <strong>Director: </strong>
+                                {% for director in movie.directors.all %}
+                                    <a href="{{ director.get_absolute_url }}">{{ director.name }}</a><br>
+                                {% endfor %}
+                            </div>
+                            <div class="title">
+                                <strong>Cast: </strong>
+                                {% for actor in movie.actors.all %}
+                                    <a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="info-box-custom green-bg">
+                <i class="fa fa-cubes"></i>
+                <div class="count">{{ counts.movies }}</div>
+                <div class="title">Movies</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row all-directors">
+        {% for director in directors %}
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="info-box brown-bg">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            {% if director.photo %}
+                                <img src="{{ director.photo.url }}" class="img-responsive">
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="count">
+                                <a href="{{ director.get_absolute_url }}">{{ director.name }}</a>
+                            </div>
+                            <div>{{ director.bio | truncatechars:100 }}</div>
+                            <br>
+                            <div class="title">
+                                <strong>Movies: </strong>
+                                {% for movie in director.movie_set.all %}
+                                    <a href="{{ movie.get_absolute_url }}">{{ movie.name }}</a><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="info-box-custom green-bg">
+                <i class="fa fa-cubes"></i>
+                <div class="count">{{ counts.directors }}</div>
+                <div class="title">Directors</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row all-actors">
+        {% for actor in actors %}
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="info-box brown-bg">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            {% if actor.photo %}
+                                <img src="{{ actor.photo.url }}" class="img-responsive">
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="count">
+                                <a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a>
+                            </div>
+                            <div>{{ actor.bio | truncatechars:100 }}</div>
+                            <br>
+                            <div class="title">
+                                <strong>Movies: </strong>
+                                {% for movie in actor.movie_set.all %}
+                                    <a href="{{ movie.get_absolute_url }}">{{ movie.name }}</a><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="info-box-custom green-bg">
+                <i class="fa fa-cubes"></i>
+                <div class="count">{{ counts.actors }}</div>
+                <div class="title">Actors</div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

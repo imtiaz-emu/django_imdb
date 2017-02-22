@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'directors',
     'actors',
     'movies',
-    'authentication'
+    'authentication',
+    'dashboard'
 ]
 
 MIDDLEWARE_CLASSES = [
