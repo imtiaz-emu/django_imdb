@@ -1,0 +1,92 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading tab-bg-info">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#recent-activity">
+                                <i class="fa fa-video-camera"></i>
+                                Movies
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#profile">
+                                <i class="fa fa-users"></i>
+                                Directors
+                            </a>
+                        </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#edit-profile">
+                                <i class="fa fa-star"></i>
+                                Actors
+                            </a>
+                        </li>
+                    </ul>
+                </header>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div id="recent-activity" class="tab-pane active">
+                            <div class="profile-activity">
+                                {% for movie in movies %}
+                                    <div class="act-time">
+                                        <div class="activity-body act-in">
+                                            <span class="arrow"></span>
+                                            <div class="text">
+                                                <a href="{{ movie.get_absolute_url }}" class="activity-img"><img class="avatar"
+                                                                                      src="{{ movie.photo.url }}" alt=""></a>
+                                                <p class="attribution"><a
+                                                        href="{{ movie.get_absolute_url }}">{{ movie.name }}</a>
+                                                    released {{ movie.release_date }}</p>
+                                                <p>{{ movie.plot }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                        <!-- directors -->
+                        <div id="profile" class="tab-pane">
+                            {% for director in directors %}
+                                <div class="act-time">
+                                    <div class="activity-body act-in">
+                                        <span class="arrow"></span>
+                                        <div class="text">
+                                            <a href="{{ director.get_absolute_url }}" class="activity-img"><img class="avatar"
+                                                                                  src="{{ director.photo.url }}" alt=""></a>
+                                            <p class="attribution"><a
+                                                    href="{{ director.get_absolute_url }}">{{ director.name }}</a></p>
+                                            <p>{{ director.bio }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Actors -->
+                        <div id="edit-profile" class="tab-pane">
+                            {% for actor in actors %}
+                                <div class="act-time">
+                                    <div class="activity-body act-in">
+                                        <span class="arrow"></span>
+                                        <div class="text">
+                                            <a href="{{ actor.get_absolute_url }}" class="activity-img"><img class="avatar"
+                                                                                  src="{{ actor.photo.url }}" alt=""></a>
+                                            <p class="attribution"><a
+                                                    href="{{ actor.get_absolute_url }}">{{ actor.name }}</a></p>
+                                            <p>{{ actor.bio }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock content %}

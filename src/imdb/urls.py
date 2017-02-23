@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^directors/', include("directors.urls", namespace='directors')),
     url(r'^actors/', include("actors.urls", namespace='actors')),
     url(r'^movies/', include("movies.urls", namespace='movies')),
-    url(r'^accounts/', include("authentication.urls", namespace='accounts'))
+    url(r'^accounts/', include("authentication.urls", namespace='accounts')),
+    url(r'^search/', 'dashboard.views.search')
 ]
 
 if settings.DEBUG:
