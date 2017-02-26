@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Movie
+from .models import Movie, MovieRating
 # Create your views here.
 
 def movies_index(request):
@@ -17,6 +17,14 @@ def movie_show(request, id=None):
     context_data = {
         'movie': movie,
         'title': movie.name,
-        'ratings': range(1,11)
+        'rating': get_movie_rating(request, movie)
     }
     return render(request, 'movies/show.html', context_data)
+
+def get_movie_rating(request, movie):
+    if request.user.is_authenticated():
+        rating = MovieRating.objects.filter(user=request.user, movie=movie)
+        if len(rating) > 0:
+            return rating[0].rating
+
+    return movie.rating
