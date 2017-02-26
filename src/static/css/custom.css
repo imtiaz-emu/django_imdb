@@ -84,3 +84,6 @@
     text-transform: uppercase;
     font-weight: 600;
 }
+.single-movie #movie-rating{
+    margin-bottom: 15px;
+}

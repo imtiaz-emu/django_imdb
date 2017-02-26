@@ -16,6 +16,7 @@ def movie_show(request, id=None):
     movie = get_object_or_404(Movie.objects.prefetch_related('directors', 'actors'), id=id)
     context_data = {
         'movie': movie,
-        'title': movie.name
+        'title': movie.name,
+        'ratings': range(1,11)
     }
     return render(request, 'movies/show.html', context_data)

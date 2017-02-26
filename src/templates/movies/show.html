@@ -7,6 +7,11 @@
             <div class="count">
                 {{ movie.name }}
             </div>
+            <div id="movie-rating">
+                {% for i in ratings %}
+                    <input type="radio" name="example" class="rating" value="{{ i }}"/>
+                {% endfor %}
+            </div>
             <div>{{ movie.plot }}</div>
             <div class="title">
                 <strong>Director: </strong>
@@ -30,3 +35,18 @@
 
     </div>
 {% endblock content %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function () {
+            $('#movie-rating').rating(function (vote, event) {
+                  alert(vote);
+{#                $.ajax({#}
+{#                    url: "/get_votes.php",#}
+{#                    type: "GET",#}
+{#                    data: {rate: vote}#}
+{#                });#}
+            });
+        })
+    </script>
+{% endblock %}
