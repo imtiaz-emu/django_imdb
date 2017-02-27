@@ -18,10 +18,12 @@ from django.conf.urls import url
 
 from .views import (
     movies_index,
-    movie_show
+    movie_show,
+    movie_rating
 )
 
 urlpatterns = [
     url(r'^$', movies_index),
-    url(r'^(?P<id>\d+)/$', movie_show, name='show')
+    url(r'^(?P<id>\d+)/$', movie_show, name='show'),
+    url(r'^(?P<id>\d+)/rating/$', movie_rating, name='rating')
 ]

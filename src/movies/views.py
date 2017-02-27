@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Movie, MovieRating
+from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 def movies_index(request):
@@ -20,6 +21,21 @@ def movie_show(request, id=None):
         'rating': get_movie_rating(request, movie)
     }
     return render(request, 'movies/show.html', context_data)
+
+def movie_rating(request, id=None):
+    movie = get_object_or_404(Movie.objects, id=id)
+    if request.is_ajax():
+        ratings_given = float(request.GET['rating'])
+        try:
+            movie_rating = MovieRating.objects.get(user=request.user, movie=movie)
+            movie_rating.rating = ratings_given
+            movie_rating.save()
+        except ObjectDoesNotExist:
+            MovieRating.objects.create(user_id=request.user.id, movie_id=movie.id, rating=ratings_given)
+
+        return JsonResponse({'rating': ratings_given})
+    return JsonResponse({'rating': movie.rating})
+
 
 def get_movie_rating(request, movie):
     if request.user.is_authenticated():

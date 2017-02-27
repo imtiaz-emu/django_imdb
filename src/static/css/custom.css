@@ -87,3 +87,7 @@
 .single-movie #movie-rating{
     margin-bottom: 15px;
 }
+#movie-rating-number {
+    margin-top: 7px;
+    font-weight: bold;
+}
