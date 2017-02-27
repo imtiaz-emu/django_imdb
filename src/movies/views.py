@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from .models import Movie, MovieRating
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Avg
 # Create your views here.
 
 def movies_index(request):
@@ -30,12 +31,18 @@ def movie_rating(request, id=None):
             movie_rating = MovieRating.objects.get(user=request.user, movie=movie)
             movie_rating.rating = ratings_given
             movie_rating.save()
+            update_movie_rating(movie)
         except ObjectDoesNotExist:
             MovieRating.objects.create(user_id=request.user.id, movie_id=movie.id, rating=ratings_given)
+            update_movie_rating(movie)
 
         return JsonResponse({'rating': ratings_given})
     return JsonResponse({'rating': movie.rating})
 
+def update_movie_rating(movie):
+    result = MovieRating.objects.filter(movie_id=movie.id).aggregate(Avg('rating'))
+    movie.rating = result['rating__avg']
+    movie.save(update_fields=['rating'])
 
 def get_movie_rating(request, movie):
     if request.user.is_authenticated():
