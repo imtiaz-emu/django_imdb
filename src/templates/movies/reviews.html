@@ -1,4 +1,57 @@
-<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+{% load staticfiles %}
+<div class="col-md-12 portlets">
+    <!-- Widget -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="pull-left">Reviews</div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="panel-body">
+            <!-- Widget content -->
+            <div class="padd sscroll">
+
+                <ul class="chats">
+
+                    {% for review in movie.review_set.all %}
+
+                        <!-- Chat by us. Use the class "by-me". -->
+                        <li class="by-me" id="review_{{ review.id }}">
+                            <!-- Use the class "pull-left" in avatar -->
+                            <div class="avatar pull-left">
+                                <img src="{% static "img/avatar1_small.jpg" %}" alt=""/>
+                            </div>
+
+                            <div class="chat-content">
+                                <!-- In meta area, first include "name" and then "time" -->
+                                <div class="chat-meta">
+                                    <span class="title">{{ review.title }}</span>
+                                    {% if review.has_spoiler %} <span><b>Review contains spoiler</b></span>{% endif %}
+                                    {% if review.user == user %}
+                                        <span class="pull-right">
+                                        <a onclick="openEditForm({{ review.id }})">
+                                            <i class="fa fa-pencil-square"></i> Edit
+                                        </a>
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                <span class="descrip">{{ review.description }}</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="form quick-post">
             <!-- Edit profile form (not working)-->
@@ -6,7 +59,8 @@
                 {{ csrf_token }}
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Your Review</h4>
                     </div>
                     <div class="modal-body">
@@ -22,21 +76,24 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="content">Content</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" id="content" name="description"></textarea>
+                                <textarea class="form-control" id="content"
+                                          rows="6" name="description"></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="tags">Has Spoiler?</label>
                             <div class="col-lg-10">
-                                <input type="checkbox" checked="" name="has_spoiler" data-toggle="switch" />
+                                <input type="checkbox" checked="" name="has_spoiler"
+                                       data-toggle="switch"/>
                             </div>
                         </div>
 
                     </div>
 
                     <div class="modal-footer">
-                        <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Close
+                        </button>
                         <button class="btn btn-warning" type="button"> Save</button>
                     </div>
                 </div>

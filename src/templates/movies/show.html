@@ -31,7 +31,7 @@
 
             {% if user.is_authenticated %}
                 <div class="review-add-btn">
-                    <a class="btn btn-success" data-toggle="modal" href="#review_modal">
+                    <a class="btn btn-success" onclick="openReviewModal()">
                         <i class="fa fa-plus"></i> Add Review
                     </a>
                 </div>
@@ -71,6 +71,27 @@
                 }
             {% endif %}
         });
+    
+    function openEditForm(review_id) {
+        $('#review_modal').modal('show');
+        review_id = "#review_" + review_id;
+        var title = $(review_id + ' .title').html();
+        var des = $(review_id + ' .descrip').html();
+        var spoiler = $(review_id).find('b')[0] == null ? false : true;
+        $('#review_modal #title').val(title);
+        $('#review_modal #content').val(des);
+        if(spoiler)
+            $("#review_modal input[type='checkbox']").prop("checked", true);
+        else
+           $("#review_modal input[type='checkbox']").prop("checked", false);
+    }
+
+    function openReviewModal() {
+        $('#review_modal').modal('show');
+        $('#review_modal #title').val('');
+        $('#review_modal #content').val('');
+        $("#review_modal input[type='checkbox']").prop("checked", false);
+    }
 
     </script>
 {% endblock %}
