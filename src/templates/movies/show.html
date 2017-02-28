@@ -29,13 +29,24 @@
                 {% endfor %}
             </div>
 
+            {% if user.is_authenticated %}
+                <div class="review-add-btn">
+                    <a class="btn btn-success" data-toggle="modal" href="#review_modal">
+                        <i class="fa fa-plus"></i> Add Review
+                    </a>
+                </div>
+            {% endif %}
+
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6">
             {% if movie.photo %}
-                <img src="{{ movie.photo.url }}" class="img-responsive">
+                <img src="{{ movie.photo.url }}" class="img-responsive movie-poster">
             {% endif %}
         </div>
 
+    </div>
+    <div class="row reviews">
+        {% include 'movies/reviews.html' %}
     </div>
 {% endblock content %}
 

@@ -91,3 +91,10 @@
     margin-top: 7px;
     font-weight: bold;
 }
+.movie-poster{
+    max-width: 325px;
+    max-height: 480px;
+}
+.review-add-btn{
+    margin-top: 15px;
+}

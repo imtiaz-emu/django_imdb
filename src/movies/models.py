@@ -41,3 +41,11 @@ class MovieRating(models.Model):
     user = models.ForeignKey(User)
     movie = models.ForeignKey(Movie)
     rating = models.FloatField(default=0.0)
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User)
+    movie = models.ForeignKey(Movie)
+    title = models.CharField(max_length=160)
+    description = models.TextField()
+    has_spoiler = models.BooleanField(default=False)
