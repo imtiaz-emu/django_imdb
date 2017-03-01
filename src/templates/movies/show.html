@@ -74,6 +74,8 @@
     
     function openEditForm(review_id) {
         $('#review_modal').modal('show');
+        $('.review-form').attr('action', '/movies/{{ movie.id }}/reviews/' + review_id);
+        $(".review-form").attr("method", "post");
         review_id = "#review_" + review_id;
         var title = $(review_id + ' .title').html();
         var des = $(review_id + ' .descrip').html();
@@ -88,6 +90,8 @@
 
     function openReviewModal() {
         $('#review_modal').modal('show');
+        $('.review-form').attr('action', '/movies/{{ movie.id }}/review/');
+        $(".review-form").attr("method", "post");
         $('#review_modal #title').val('');
         $('#review_modal #content').val('');
         $("#review_modal input[type='checkbox']").prop("checked", false);

@@ -29,6 +29,9 @@
                                     {% if review.has_spoiler %} <span><b>Review contains spoiler</b></span>{% endif %}
                                     {% if review.user == user %}
                                         <span class="pull-right">
+                                        <a href="{% url 'movies:delete_review' movie_id=movie.id id=review.id %}">
+                                            <i class="fa fa-trash-o"></i> Delete
+                                        </a>
                                         <a onclick="openEditForm({{ review.id }})">
                                             <i class="fa fa-pencil-square"></i> Edit
                                         </a>
@@ -56,7 +59,6 @@
         <div class="form quick-post">
             <!-- Edit profile form (not working)-->
             <form class="form-horizontal review-form">
-                {{ csrf_token }}
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"
@@ -64,12 +66,12 @@
                         <h4 class="modal-title">Your Review</h4>
                     </div>
                     <div class="modal-body">
-
+                        {% csrf_token %}
                         <!-- Title -->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="title">Title</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="title" name="title">
+                                <input type="text" class="form-control" id="title" name="title" required>
                             </div>
                         </div>
                         <!-- Content -->
@@ -77,15 +79,14 @@
                             <label class="control-label col-lg-2" for="content">Content</label>
                             <div class="col-lg-10">
                                 <textarea class="form-control" id="content"
-                                          rows="6" name="description"></textarea>
+                                          rows="6" name="description" required></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="tags">Has Spoiler?</label>
                             <div class="col-lg-10">
-                                <input type="checkbox" checked="" name="has_spoiler"
-                                       data-toggle="switch"/>
+                                <input type="checkbox" name="has_spoiler" />
                             </div>
                         </div>
 
@@ -94,7 +95,7 @@
                     <div class="modal-footer">
                         <button data-dismiss="modal" class="btn btn-default" type="button">Close
                         </button>
-                        <button class="btn btn-warning" type="button"> Save</button>
+                        <button class="btn btn-warning" type="submit"> Save</button>
                     </div>
                 </div>
             </form>

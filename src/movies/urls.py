@@ -19,11 +19,17 @@ from django.conf.urls import url
 from .views import (
     movies_index,
     movie_show,
-    movie_rating
+    movie_rating,
+    create_movie_review,
+    edit_movie_review,
+    delete_movie_review
 )
 
 urlpatterns = [
     url(r'^$', movies_index),
     url(r'^(?P<id>\d+)/$', movie_show, name='show'),
-    url(r'^(?P<id>\d+)/rating/$', movie_rating, name='rating')
+    url(r'^(?P<id>\d+)/rating/$', movie_rating, name='rating'),
+    url(r'^(?P<id>\d+)/review/$', create_movie_review, name='new_review'),
+    url(r'^(?P<movie_id>\d+)/reviews/(?P<id>\d+)$', edit_movie_review, name='edit_review'),
+    url(r'^(?P<movie_id>\d+)/reviews/(?P<id>\d+)/delete$', delete_movie_review, name='delete_review'),
 ]
