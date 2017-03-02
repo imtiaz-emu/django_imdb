@@ -26,9 +26,9 @@ urlpatterns = [
     url(r'^actors/', include("actors.urls", namespace='actors')),
     url(r'^movies/', include("movies.urls", namespace='movies')),
     url(r'^accounts/', include("authentication.urls", namespace='accounts')),
-    url(r'^search/', 'dashboard.views.search')
+    url(r'^search/', 'dashboard.views.search'),
+    url(r'^api/directors/', include("directors.api.urls", namespace='api-directors')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
